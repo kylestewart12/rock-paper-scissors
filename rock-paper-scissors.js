@@ -88,12 +88,11 @@ options.forEach((button) => {button.addEventListener("click", function(e){
         setTimeout(function(){lastGame.textContent = "";}, 3000);
         numGames++;
         scores.textContent = `Score:  You: ${numWins} Computer: ${numLosses}`;
-        console.log(outcome[0]);
     }
     else if (numWins>=5){
-        scores.textContent = "You win!";
+        scores.textContent = "You win! " + String.fromCodePoint(0x1F603);
     }
     else if (numLosses>=5){
-        scores.textContent = "Loser! :P";
+        scores.textContent = "Loser! " + String.fromCodePoint(0x1F61D);
     }
 })})
