@@ -1,0 +1,51 @@
+#buttonField {
+    text-align: center;
+    margin-top: 200px;
+}
+
+.centered {
+    text-align: center;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    height: 120px;
+    width: 120px;
+    border: none;
+    background-color: white;
+}
+
+#rock {
+    background-image: url("rock.png");
+    background-size: 100%;
+}
+#rock:hover{
+    background-image: url("rock-hover.png");
+}
+
+#paper {
+    background-image: url("paper.png");
+    background-size: 100%;
+}
+
+#paper:hover {
+    background-image: url("paper-hover.png");
+}
+
+#scissors {
+    background-image: url("scissors.png");
+    background-size: 100%;
+}
+
+#scissors:hover {
+    background-image: url("scissors-hover.png");
+}
+
+#lastGame {
+    margin: 10px;
+}
+
+#scores {
+    margin: 10px;
+}

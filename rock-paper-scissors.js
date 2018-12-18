@@ -19,9 +19,9 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection){
 
     let player = playerSelection.toLowerCase();
-    victory = [`You win! ${player} beats ${computerSelection}.`, 1];
-    loss = [`Looooooooser! ${computerSelection} beats ${player}.`, 0];
-    tie = [`${player} ties ${computerSelection}.`, 0];
+    victory = [`You win! ${player} beats ${computerSelection}.`, "w"];
+    loss = [`Looooooooser! ${computerSelection} beats ${player}.`, "l"];
+    tie = [`${player} ties ${computerSelection}.`, "t"];
     switch (player) {
         case "rock":
             switch (computerSelection){
@@ -61,31 +61,39 @@ function playRound(playerSelection, computerSelection){
                     break;
             }
         default:
-            return "Choice error.";
+            return ["Choice error.", "e"];
     }
 }
 
-function game(){
-    let gameCount = 0;
-    let numWins = 0;
-    while (gameCount<5){
-        playerSelection = prompt("Rock, paper, or scissors? ");
-        let outcome = playRound(playerSelection, computerPlay());
-        if (outcome == "Choice error."){
-            console.log(outcome);
-        }
-        else {
-            console.log(outcome[0])
-            numWins += outcome[1];
-            gameCount++;
-        }
-    }
-    if (numWins>=3){
-        console.log(`${numWins}/5. You win!`)
-    }
-    else {
-        console.log(`${numWins}/5. Loser!`)
-    }
-}
 
-game();
+let numGames = 0;
+let numWins = 0;
+let numLosses = 0;
+
+scores = document.querySelector("#scores");
+scores.textContent = `Score:  You: ${numWins} Computer: ${numLosses}`;
+lastGame = document.querySelector("#lastGame");
+
+options = document.querySelectorAll("button");
+options.forEach((button) => {button.addEventListener("click", function(e){
+    if (numWins<5 && numLosses<5){
+        let outcome = playRound(e.target.id, computerPlay());
+        if (outcome[1]=="w"){
+            numWins++;
+        }
+        else if (outcome[1]=="l"){
+            numLosses++;
+        }
+        lastGame.textContent = outcome[0];
+        setTimeout(function(){lastGame.textContent = "";}, 3000);
+        numGames++;
+        scores.textContent = `Score:  You: ${numWins} Computer: ${numLosses}`;
+        console.log(outcome[0]);
+    }
+    else if (numWins>=5){
+        scores.textContent = "You win!";
+    }
+    else if (numLosses>=5){
+        scores.textContent = "Loser! :P";
+    }
+})})
